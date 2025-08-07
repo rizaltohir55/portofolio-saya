@@ -1,5 +1,7 @@
 import React from 'react';
-import { motion } from 'framer-motion'; // ✅ Perbaikan penting
+import { motion } from 'framer-motion';
+import { FaJsSquare, FaPython, FaJava, FaPhp, FaRust } from 'react-icons/fa'; // ← Ikon bahasa
+import { SiTypescript, SiCplusplus } from 'react-icons/si';
 import usePageTitle from '../hooks/usePageTitle';
 import AnimatedText from '../components/AnimatedText';
 import profilePhoto from '../assets/images/profile-pic.jpg';
@@ -7,6 +9,16 @@ import profilePhoto from '../assets/images/profile-pic.jpg';
 const skills = [
   'React', 'JavaScript (ES6+)', 'HTML5', 'CSS3', 'Node.js', 
   'Express', 'Framer Motion', 'Git', 'GitHub', 'REST API'
+];
+
+const programmingLanguages = [
+  { name: 'JavaScript', icon: <FaJsSquare size={40} color="#f7df1e" /> },
+  { name: 'TypeScript', icon: <SiTypescript size={40} color="#3178c6" /> },
+  { name: 'Python', icon: <FaPython size={40} color="#3776ab" /> },
+  { name: 'Java', icon: <FaJava size={40} color="#007396" /> },
+  { name: 'PHP', icon: <FaPhp size={40} color="#8892be" /> },
+  { name: 'C++', icon: <SiCplusplus size={40} color="#00599C" /> },
+  { name: 'Rust', icon: <FaRust size={40} color="#000000" /> },
 ];
 
 function AboutPage() {
@@ -26,6 +38,7 @@ function AboutPage() {
         className="about-title" 
         viewport={{ once: true }} 
       />
+
       <div className="about-content-grid">
         <div className="about-text-section">
           <h2 className="about-subtitle">Biografi</h2>
@@ -40,12 +53,25 @@ function AboutPage() {
           <img src={profilePhoto} alt="Rizal Tohir" />
         </div>
       </div>
+
       <div className="skills-section">
         <h2 className="about-subtitle">Keahlian Saya</h2>
         <div className="skills-list">
           {skills.map((skill, index) => (
-            <div key={index} className="skill-badge">
+            <div key={skill} className="skill-badge">
               {skill}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="languages-section">
+        <h2 className="about-subtitle">Bahasa Pemrograman</h2>
+        <div className="languages-grid">
+          {programmingLanguages.map((lang, index) => (
+            <div key={lang.name} className="language-card">
+              {lang.icon}
+              <span>{lang.name}</span>
             </div>
           ))}
         </div>
