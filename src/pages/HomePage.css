@@ -1,0 +1,41 @@
+/* src/pages/HomePage.css */
+.hero-section {
+  /* Memberi ruang di atas agar tidak tertutup header fixed */
+  padding-top: 180px; /* DITAMBAH: Lebih banyak ruang di atas */
+  padding-bottom: 50px; /* Menambah padding bawah */
+  min-height: 100vh; /* Kembali ke 100vh untuk kesan imersif penuh */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 150px; /* DITAMBAH: Jarak lebih besar ke bagian proyek */
+  box-sizing: border-box;
+}
+
+.hero-title {
+  font-size: 4.5rem; /* Ukuran tetap, tapi akan terasa lebih megah dengan spasi lebih */
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.2;
+  max-width: 900px;
+}
+
+.hero-title span {
+  display: inline-block;
+}
+
+.hero-subtitle {
+  font-size: 1.2rem; /* Sedikit diperbesar kembali agar seimbang */
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin-top: 30px;
+  line-height: 1.8; /* Jarak antar baris lebih besar */
+}
+
+.projects-list-section {
+  /* Menambahkan padding agar tidak terlalu mepet ke tepi */
+  padding-left: 60px; /* DITAMBAH */
+  padding-right: 60px; /* DITAMBAH */
+  box-sizing: border-box;
+}

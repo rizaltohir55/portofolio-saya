@@ -1,26 +1,37 @@
-import React from 'react';
-import { Link } from 'react-router-dom'; // Impor komponen Link untuk navigasi
+import React, { useState, useEffect } from 'react';
+import { NavLink, useLocation } from 'react-router-dom';
+import profilePhoto from '../assets/images/profile-pic.jpg';
 
 function Header() {
+  const [scrolled, setScrolled] = useState(false);
+  const location = useLocation();
+  const isHomePage = location.pathname === '/';
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  const headerClasses = `header ${scrolled || !isHomePage ? 'scrolled' : ''}`;
+
   return (
-    <header className="App-header">
-      {/* Bagian Kiri: Logo dan Judul */}
-      <div className="header-left">
-        <img src="/logo192.png" className="App-logo" alt="logo" />
+    <header className={headerClasses}>
+      <div className="header-logo">
+        <img src={profilePhoto} alt="Rizal Tohir" className="logo-photo" />
         <div>
-          {/* Link di judul agar bisa kembali ke Beranda saat diklik */}
-          <Link to="/" className="header-title-link">
-            <h1>Portofolio Rizal Tohir</h1>
-          </Link>
-          <p>Seorang Web Developer Pemula</p>
+          <h1>Rizal Tohir</h1>
+          <p>Web Developer</p>
         </div>
       </div>
-
-      {/* Bagian Kanan: Navigasi */}
-      <nav>
-        <Link to="/">Beranda</Link>
-        <Link to="/tentang">Tentang Saya</Link>
-        <Link to="/kontak">Kontak</Link>
+      <nav className="header-nav">
+        <NavLink to="/" end>Beranda</NavLink>
+        <NavLink to="/tentang-saya">Tentang Saya</NavLink>
+        <NavLink to="/kontak">Kontak</NavLink>
       </nav>
     </header>
   );

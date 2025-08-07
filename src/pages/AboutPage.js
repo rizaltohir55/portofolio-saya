@@ -1,41 +1,56 @@
 import React from 'react';
+import { motion } from 'framer-motion'; // ✅ Perbaikan penting
+import usePageTitle from '../hooks/usePageTitle';
+import AnimatedText from '../components/AnimatedText';
+import profilePhoto from '../assets/images/profile-pic.jpg';
 
-// Gaya CSS bisa kita letakkan di file terpisah nanti,
-// untuk sekarang kita gunakan inline style untuk contoh.
-const aboutStyle = {
-  maxWidth: '800px',
-  margin: '40px auto',
-  padding: '20px',
-  backgroundColor: 'white',
-  border: '1px solid #ddd',
-  borderRadius: '8px',
-  textAlign: 'left',
-  lineHeight: '1.6'
-};
+const skills = [
+  'React', 'JavaScript (ES6+)', 'HTML5', 'CSS3', 'Node.js', 
+  'Express', 'Framer Motion', 'Git', 'GitHub', 'REST API'
+];
 
 function AboutPage() {
+  usePageTitle('Tentang Saya | Rizal Tohir');
+
   return (
-    <div style={aboutStyle}>
-      <h2>Tentang Saya</h2>
-      <p>
-        Halo! Nama saya Rizal Tohir. Saya adalah seorang web developer pemula yang bersemangat 
-        untuk belajar dan membangun aplikasi web yang bermanfaat dan menarik. Saya memiliki 
-        ketertarikan mendalam pada teknologi frontend, terutama React.
-      </p>
-      <p>
-        Website portofolio ini adalah salah satu proyek saya untuk mempraktikkan dan 
-        menunjukkan kemampuan saya dalam menggunakan React, membuat komponen, mengelola state, 
-        dan mengimplementasikan routing.
-      </p>
-      <h3>Keterampilan</h3>
-      <ul>
-        <li>HTML & CSS</li>
-        <li>JavaScript (ES6+)</li>
-        <li>React</li>
-        <li>Git & GitHub</li>
-        <li>Node.js (Dasar)</li>
-      </ul>
-    </div>
+    <motion.div 
+      className="about-page"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.5 }}
+    >
+      <AnimatedText 
+        text="Passion Fuels Purpose." 
+        el="h1" 
+        className="about-title" 
+        viewport={{ once: true }} 
+      />
+      <div className="about-content-grid">
+        <div className="about-text-section">
+          <h2 className="about-subtitle">Biografi</h2>
+          <p>
+            Halo! Saya Rizal Tohir, seorang web developer kreatif yang bersemangat mengubah ide-ide kompleks menjadi pengalaman digital yang indah, fungsional, dan imersif.
+          </p>
+          <p>
+            Dengan fondasi yang kuat dalam teknologi front-end modern seperti React dan kecintaan pada desain yang bersih, saya fokus untuk membangun antarmuka yang tidak hanya terlihat bagus, tetapi juga terasa intuitif dan responsif.
+          </p>
+        </div>
+        <div className="about-image-section">
+          <img src={profilePhoto} alt="Rizal Tohir" />
+        </div>
+      </div>
+      <div className="skills-section">
+        <h2 className="about-subtitle">Keahlian Saya</h2>
+        <div className="skills-list">
+          {skills.map((skill, index) => (
+            <div key={index} className="skill-badge">
+              {skill}
+            </div>
+          ))}
+        </div>
+      </div>
+    </motion.div>
   );
 }
 

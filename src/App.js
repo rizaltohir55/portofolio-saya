@@ -1,36 +1,51 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import './App.css';
-
-// Impor komponen tata letak (layout)
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { AnimatePresence } from 'framer-motion';
 import Header from './components/Header';
 import Footer from './components/Footer';
-
-// Impor semua komponen halaman (pages)
 import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
 import ContactPage from './pages/ContactPage';
+import './App.css';
+
+function AnimatedRoutes() {
+  const location = useLocation();
+  return (
+    <AnimatePresence mode="wait">
+      <Routes location={location} key={location.pathname}>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/tentang-saya" element={<AboutPage />} />
+        <Route path="/kontak" element={<ContactPage />} />
+      </Routes>
+    </AnimatePresence>
+  );
+}
 
 function App() {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="preloader">
+        <div className="loader-circle"></div>
+      </div>
+    );
+  }
+
   return (
     <Router>
       <div className="App">
-        {/* Header dan Footer akan selalu tampil di setiap halaman */}
         <Header />
-
-        {/* Bagian 'main' adalah tempat konten halaman akan berganti-ganti */}
         <main>
-          <Routes>
-            {/* Aturan 1: Jika URL adalah '/', tampilkan HomePage */}
-            <Route path="/" element={<HomePage />} />
-            
-            {/* Aturan 2: Jika URL adalah '/tentang', tampilkan AboutPage */}
-            <Route path="/tentang" element={<AboutPage />} />
-
-            {/* Aturan 3: Jika URL adalah '/kontak', tampilkan ContactPage */}
-            <Route path="/kontak" element={<ContactPage />} />
-          </Routes>
+          <AnimatedRoutes />
         </main>
-
         <Footer />
       </div>
     </Router>

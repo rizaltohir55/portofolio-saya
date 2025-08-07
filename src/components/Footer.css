@@ -1,20 +1,53 @@
+/* src/components/Footer.css */
 .site-footer {
-  background-color: #282c34;
-  color: white;
-  padding: 20px;
+  background-color: var(--bg-surface);
+  color: var(--text-secondary);
+  padding: 50px 40px 20px 40px;
+  border-top: 1px solid var(--border-color);
+  margin-top: 100px;
+}
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto 40px auto;
+  text-align: left;
+}
+.footer-about {
+  flex: 2;
+  min-width: 250px;
+}
+.footer-about h3 {
+  color: var(--text-primary);
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  margin: 0 0 15px 0;
+}
+.footer-about p {
+  line-height: 1.7;
+  margin: 0;
+}
+.footer-social {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  gap: 25px;
+  font-size: 1.8rem; /* Ukuran ikon */
+}
+.footer-social a {
+  color: var(--text-secondary);
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+.footer-social a:hover {
+  color: var(--primary-accent);
+  transform: translateY(-3px);
+}
+.footer-bottom {
+  border-top: 1px solid var(--border-color);
+  padding-top: 20px;
   text-align: center;
-  margin-top: 60px; /* Memberi jarak dari konten di atasnya */
-}
-
-.site-footer p {
-  margin: 5px 0;
-}
-
-.site-footer a {
-  color: #61dafb; /* Biru React */
-  text-decoration: none;
-}
-
-.site-footer a:hover {
-  text-decoration: underline;
+  font-size: 0.9rem;
 }
