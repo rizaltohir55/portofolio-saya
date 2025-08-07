@@ -1,17 +1,29 @@
-// Langkah 1: Impor React (wajib untuk setiap komponen)
 import React from 'react';
+import { Link } from 'react-router-dom'; // Impor komponen Link untuk navigasi
 
-// Langkah 2: Buat fungsi komponen
 function Header() {
-  // Langkah 3: Komponen mengembalikan elemen JSX (tampilan)
   return (
     <header className="App-header">
-      <img src="/logo192.png" className="App-logo" alt="logo" />
-      <h1>Portofolio Rizal Tohir</h1>
-      <p>Seorang Web Developer Pemula</p>
+      {/* Bagian Kiri: Logo dan Judul */}
+      <div className="header-left">
+        <img src="/logo192.png" className="App-logo" alt="logo" />
+        <div>
+          {/* Link di judul agar bisa kembali ke Beranda saat diklik */}
+          <Link to="/" className="header-title-link">
+            <h1>Portofolio Rizal Tohir</h1>
+          </Link>
+          <p>Seorang Web Developer Pemula</p>
+        </div>
+      </div>
+
+      {/* Bagian Kanan: Navigasi */}
+      <nav>
+        <Link to="/">Beranda</Link>
+        <Link to="/tentang">Tentang Saya</Link>
+        <Link to="/kontak">Kontak</Link>
+      </nav>
     </header>
   );
 }
 
-// Langkah 4: Ekspor komponen agar bisa digunakan di file lain
 export default Header;

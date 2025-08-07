@@ -1,18 +1,39 @@
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
+
+// Impor komponen tata letak (layout)
 import Header from './components/Header';
-// Langkah 1: Impor komponen Portfolio
-import Portfolio from './components/Portfolio'; 
+import Footer from './components/Footer';
+
+// Impor semua komponen halaman (pages)
+import HomePage from './pages/HomePage';
+import AboutPage from './pages/AboutPage';
+import ContactPage from './pages/ContactPage';
 
 function App() {
   return (
-    <div className="App">
-      <Header />
+    <Router>
+      <div className="App">
+        {/* Header dan Footer akan selalu tampil di setiap halaman */}
+        <Header />
 
-      <main>
-        {/* Langkah 2: Tampilkan komponen Portfolio di sini */}
-        <Portfolio />
-      </main>
-    </div>
+        {/* Bagian 'main' adalah tempat konten halaman akan berganti-ganti */}
+        <main>
+          <Routes>
+            {/* Aturan 1: Jika URL adalah '/', tampilkan HomePage */}
+            <Route path="/" element={<HomePage />} />
+            
+            {/* Aturan 2: Jika URL adalah '/tentang', tampilkan AboutPage */}
+            <Route path="/tentang" element={<AboutPage />} />
+
+            {/* Aturan 3: Jika URL adalah '/kontak', tampilkan ContactPage */}
+            <Route path="/kontak" element={<ContactPage />} />
+          </Routes>
+        </main>
+
+        <Footer />
+      </div>
+    </Router>
   );
 }
 
