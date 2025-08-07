@@ -1,38 +1,69 @@
+/* Reset dan Gaya Dasar */
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #f4f4f4;
+  color: #333;
+}
+
 .App {
   text-align: center;
 }
 
+/* Gaya untuk Header */
+.App-header {
+  background-color: #282c34;
+  padding: 20px;
+  color: white;
+  margin-bottom: 40px;
+}
+
+/* Hentikan animasi logo */
 .App-logo {
-  height: 40vmin;
+  height: 80px;
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* Gaya untuk Bagian Portofolio */
+.portfolio-section {
+  padding: 0 20px;
+  max-width: 1200px;
+  margin: 0 auto; /* Pusatkan konten */
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.portfolio-section h2 {
+  font-size: 2.5rem;
+  border-bottom: 2px solid #61dafb; /* Garis bawah biru ala React */
+  display: inline-block;
+  padding-bottom: 10px;
+  margin-bottom: 40px;
 }
 
-.App-link {
-  color: #61dafb;
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  text-align: left;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.project-card {
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  transition: transform 0.2s;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+}
+
+.project-card h3 {
+  margin-top: 0;
+  color: #282c34;
 }
