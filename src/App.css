@@ -41,7 +41,12 @@ h1, h2, h3, h4, h5, h6 { font-weight: 700; }
 .header { position: fixed; top: 0; left: 0; width: 100%; padding: 15px 40px; display: flex; justify-content: space-between; align-items: center; z-index: 9999; background-color: transparent; transition: background-color 0.4s ease, backdrop-filter 0.4s ease, border-color 0.4s ease; box-sizing: border-box; border-bottom: 1px solid transparent; }
 .header.scrolled { background-color: rgba(30, 30, 30, 0.8); backdrop-filter: blur(10px); border-bottom-color: var(--border-color); }
 .header-logo { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
-.logo-photo { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid var(--primary-accent); }
+.logo-photo { 
+  width: 40px; 
+  height: 40px; 
+  border-radius: 50%; 
+  object-fit: cover; 
+}
 .header-logo h1 { font-size: 1.2rem; margin: 0; }
 .header-logo p { color: var(--text-secondary); font-size: 0.8rem; margin: 0; }
 .header-nav { flex-shrink: 0; }
