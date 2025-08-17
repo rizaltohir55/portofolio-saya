@@ -1,83 +1,81 @@
-import React from 'react';
+// src/pages/ContactPage.js
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { FaJsSquare, FaPython, FaJava, FaPhp } from 'react-icons/fa'; // Ikon bahasa
-import { SiTypescript, SiCplusplus, SiRust } from 'react-icons/si'; // FaRust diganti dengan SiRust
 import usePageTitle from '../hooks/usePageTitle';
 import AnimatedText from '../components/AnimatedText';
-import profilePhoto from '../assets/images/profile-pic.jpg';
 
-const skills = [
-  'React', 'JavaScript (ES6+)', 'HTML5', 'CSS3', 'Node.js', 
-  'Express', 'Framer Motion', 'Git', 'GitHub', 'REST API'
-];
+function ContactPage() {
+  usePageTitle('Kontak | Rizal Tohir');
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [formStatus, setFormStatus] = useState({ submitted: false, success: false, message: '' });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-const programmingLanguages = [
-  { name: 'JavaScript', icon: <FaJsSquare size={40} color="#f7df1e" /> },
-  { name: 'TypeScript', icon: <SiTypescript size={40} color="#3178c6" /> },
-  { name: 'Python', icon: <FaPython size={40} color="#3776ab" /> },
-  { name: 'Java', icon: <FaJava size={40} color="#007396" /> },
-  { name: 'PHP', icon: <FaPhp size={40} color="#8892be" /> },
-  { name: 'C++', icon: <SiCplusplus size={40} color="#00599C" /> },
-  { name: 'Rust', icon: <SiRust size={40} color="#000000" /> },
-];
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prevState => ({ ...prevState, [name]: value }));
+  };
 
-function AboutPage() {
-  usePageTitle('Tentang Saya | Rizal Tohir');
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setFormStatus({ submitted: false, success: false, message: '' });
+
+    try {
+      const response = await fetch('https://formspree.io/f/xwpqwojy', { // Ganti dengan kode Formspree Anda
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData )
+      });
+      if (response.ok) {
+        setFormStatus({ submitted: true, success: true, message: 'Terima kasih! Pesan Anda telah terkirim.' });
+        setFormData({ name: '', email: '', message: '' });
+      } else {
+        throw new Error('Gagal mengirim pesan.');
+      }
+    } catch (error) {
+      setFormStatus({ submitted: true, success: false, message: 'Oops! Terjadi kesalahan. Silakan coba lagi.' });
+    }
+    setIsSubmitting(false);
+  };
 
   return (
     <motion.div 
-      className="about-page"
+      className="contact-page"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.5 }}
     >
-      <AnimatedText 
-        text="Passion Fuels Purpose." 
-        el="h1" 
-        className="about-title" 
-        viewport={{ once: true }} 
-      />
+      <AnimatedText text="Let's Connect." el="h1" className="contact-title" viewport={{ once: true }} />
+      <p className="contact-subtitle">Punya pertanyaan, proposal, atau hanya ingin menyapa? Isi formulir di bawah ini.</p>
+      
+      {formStatus.submitted && !formStatus.success && (
+        <div className={`form-status-message error`}>{formStatus.message}</div>
+      )}
 
-      <div className="about-content-grid">
-        <div className="about-text-section">
-          <h2 className="about-subtitle">Biografi</h2>
-          <p>
-            Halo! Saya Rizal Tohir, seorang web developer kreatif yang bersemangat mengubah ide-ide kompleks menjadi pengalaman digital yang indah, fungsional, dan imersif.
-          </p>
-          <p>
-            Dengan fondasi yang kuat dalam teknologi front-end modern seperti React dan kecintaan pada desain yang bersih, saya fokus untuk membangun antarmuka yang tidak hanya terlihat bagus, tetapi juga terasa intuitif dan responsif.
-          </p>
-        </div>
-        <div className="about-image-section">
-          <img src={profilePhoto} alt="Rizal Tohir" />
-        </div>
-      </div>
-
-      <div className="skills-section">
-        <h2 className="about-subtitle">Keahlian Saya</h2>
-        <div className="skills-list">
-          {skills.map((skill, index) => (
-            <div key={skill} className="skill-badge">
-              {skill}
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <div className="languages-section">
-        <h2 className="about-subtitle">Bahasa Pemrograman</h2>
-        <div className="languages-grid">
-          {programmingLanguages.map((lang, index) => (
-            <div key={lang.name} className="language-card">
-              {lang.icon}
-              <span>{lang.name}</span>
-            </div>
-          ))}
-        </div>
-      </div>
+      {formStatus.submitted && formStatus.success ? (
+        <div className={`form-status-message success`}>{formStatus.message}</div>
+      ) : (
+        <form className="contact-form" onSubmit={handleSubmit}>
+          <div className="form-group">
+            <input type="text" id="name" name="name" required placeholder=" " value={formData.name} onChange={handleChange}/>
+            <label htmlFor="name">Nama</label>
+          </div>
+          <div className="form-group">
+            <input type="email" id="email" name="email" required placeholder=" " value={formData.email} onChange={handleChange}/>
+            <label htmlFor="email">Email</label>
+          </div>
+          <div className="form-group">
+            <textarea id="message" name="message" rows="5" required placeholder=" " value={formData.message} onChange={handleChange}></textarea>
+            <label htmlFor="message">Pesan</label>
+          </div>
+          <button type="submit" className="contact-button" disabled={isSubmitting}>
+            {isSubmitting ? 'Mengirim...' : 'Kirim Pesan'}
+          </button>
+        </form>
+      )}
     </motion.div>
   );
 }
 
-export default AboutPage;
+export default ContactPage;

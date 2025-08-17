@@ -9,7 +9,7 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  margin-bottom: 150px; /* DITAMBAH: Jarak lebih besar ke bagian proyek */
+  margin-bottom: 0; /* Dihapus karena seksi services akan memberi jarak */
   box-sizing: border-box;
 }
 
@@ -33,9 +33,51 @@
   line-height: 1.8; /* Jarak antar baris lebih besar */
 }
 
+/* Tombol Aksi di Hero Section */
+.hero-cta-button {
+  margin-top: 40px;
+  background-image: linear-gradient(to right, var(--primary-accent-darker) 0%, var(--primary-accent) 51%, var(--primary-accent-darker) 100%);
+  background-size: 200% auto;
+  color: var(--text-primary);
+  padding: 15px 40px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.4s ease;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.hero-cta-button:hover {
+  background-position: right center;
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 168, 255, 0.2);
+}
+
 .projects-list-section {
   /* Menambahkan padding agar tidak terlalu mepet ke tepi */
   padding-left: 60px; /* DITAMBAH */
   padding-right: 60px; /* DITAMBAH */
+  padding-top: 120px;
   box-sizing: border-box;
+}
+
+/* Judul umum untuk seksi */
+.section-title {
+    font-size: 2.8rem;
+    text-align: center;
+    margin-bottom: 80px;
+    color: var(--text-primary);
+}
+
+@media (max-width: 768px) {
+    .projects-list-section {
+        padding-top: 80px;
+    }
+    .section-title {
+        font-size: 2.2rem;
+    }
 }
