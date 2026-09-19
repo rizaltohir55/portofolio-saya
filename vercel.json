@@ -1,8 +1,8 @@
 {
   "redirects": [
     {
-      "source": "/(.*)",
-      "destination": "https://web-porto-2ujbd8hh4-rizaltohir55s-projects.vercel.app/:splat",
+      "source": "/:path((?!vercel).*)",
+      "destination": "https://web-porto-2ujbd8hh4-rizaltohir55s-projects.vercel.app/:path",
       "permanent": true
     }
   ]
