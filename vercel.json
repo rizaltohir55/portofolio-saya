@@ -1,8 +1,8 @@
 {
   "redirects": [
     {
-      "source": "/:path((?!vercel).*)",
-      "destination": "https://rizaltohir.vercel.app/:path",
+      "source": "/(.*)",
+      "destination": "https://rizaltohir.vercel.app/$1",
       "permanent": true
     }
   ]
