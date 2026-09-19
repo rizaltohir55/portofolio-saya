@@ -2,7 +2,7 @@
   "redirects": [
     {
       "source": "/:path((?!vercel).*)",
-      "destination": "https://web-porto-2ujbd8hh4-rizaltohir55s-projects.vercel.app/:path",
+      "destination": "https://rizaltohir.vercel.app/:path",
       "permanent": true
     }
   ]
