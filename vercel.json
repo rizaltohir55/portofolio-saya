@@ -1,9 +1,11 @@
 {
-  "redirects": [
+  "routes": [
     {
-      "source": "/(.*)",
-      "destination": "https://rizaltohir.vercel.app/$1",
-      "permanent": true
+      "src": "/(.*)",
+      "status": 308,
+      "headers": {
+        "Location": "https://rizaltohir.vercel.app/$1"
+      }
     }
   ]
 }
